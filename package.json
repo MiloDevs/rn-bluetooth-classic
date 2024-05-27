@@ -1,0 +1,29 @@
+{
+  "name": "rn-bluetooth-classic",
+  "version": "1.0.1",
+  "description": "RNBluetoothClassic wrapper",
+  "main": "./src/useBluetooth.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiloDevs/rn-bluetooth-classic.git"
+  },
+  "keywords": [
+    "react-native",
+    "react",
+    "react-native-bluetooth-classic",
+    "bluetooth-classic"
+  ],
+  "dependencies": {
+    "react-native-bluetooth-classic": "^1.73.0-rc.8",
+    "with-rn-bluetooth-classic": "^1.0.5"
+  },
+  "author": "milodevs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MiloDevs/rn-bluetooth-classic/issues"
+  },
+  "homepage": "https://github.com/MiloDevs/rn-bluetooth-classic#readme"
+}

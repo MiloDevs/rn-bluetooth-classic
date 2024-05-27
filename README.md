@@ -1,3 +1,4 @@
+
 ---
 
 # react-native-bluetooth-classic
@@ -23,7 +24,7 @@ yarn add react-native-bluetooth-classic
 ### 1. Import the `BluetoothProvider` and wrap your app with it in your root component:
 
 ```javascript
-import { BluetoothProvider } from 'react-native-bluetooth-classic';
+import { BluetoothProvider } from 'react-native-bluetooth-provider';
 
 const App = () => {
   return (
@@ -45,6 +46,50 @@ const YourComponent = () => {
   // Your component logic here...
 };
 ```
+
+Sure, here's the added section for using `react-native-bluetooth-classic` with Expo:
+
+```markdown
+## Use with Expo
+
+If you are using Expo and want to integrate `react-native-bluetooth-classic`, you can use the `with-rn-bluetooth-classic` Expo plugin maintained by amitferman. This plugin helps with auto-configuration of permissions and protocols.
+
+### Expo Plugin
+
+amitferman has released and maintains a `with-rn-bluetooth-classic` Expo plugin to get things working.
+
+- [with-rn-bluetooth-classic GitHub Repository](https://github.com/amitferman/with-rn-bluetooth-classic)
+
+### Expo Installation
+
+You can install `react-native-bluetooth-classic` and `with-rn-bluetooth-classic` from npm using Expo's `expo install` command:
+
+```bash
+expo install react-native-bluetooth-classic with-rn-bluetooth-classic
+```
+
+### Configure app.json or app.config.json
+
+After installation, configure your `app.json` or `app.config.json` with the following settings:
+
+```json
+{
+  "plugins": [
+    ["with-rn-bluetooth-classic",
+      {
+        "peripheralUsageDescription": "Allow myDevice to check bluetooth peripheral info",
+        "alwaysUsageDescription": "Allow myDevice to always use bluetooth info",
+        "protocols": [
+          "com.myCompany.p1",
+          "com.myCompany.p2"
+        ]
+      }
+    ]
+  ]
+}
+```
+
+Make sure to replace `"com.myCompany.p1"` and `"com.myCompany.p2"` with your own protocol identifiers.
 
 ## Features
 
