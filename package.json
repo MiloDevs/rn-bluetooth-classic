@@ -20,8 +20,10 @@
     "react-native-bluetooth-classic": "^1.73.0-rc.8",
     "with-rn-bluetooth-classic": "^1.0.5"
   },
+  
   "author": "milodevs",
   "license": "ISC",
+  "types": "types/index.d.ts",
   "bugs": {
     "url": "https://github.com/MiloDevs/rn-bluetooth-classic/issues"
   },
