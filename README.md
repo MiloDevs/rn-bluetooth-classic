@@ -37,7 +37,7 @@ yarn add react-native-bluetooth-classic
 ### 1. Import the `BluetoothProvider` and wrap your app with it in your root component:
 
 ```javascript
-import { BluetoothProvider } from 'react-native-bluetooth-provider';
+import { BluetoothProvider } from 'rn-bluetooth-classic';
 
 const App = () => {
   return (
@@ -51,7 +51,7 @@ const App = () => {
 ### 2. Use the `useBluetooth` hook in your components to access Bluetooth functionality:
 
 ```javascript
-import { useBluetooth } from 'react-native-bluetooth-classic';
+import { useBluetooth } from 'rn-bluetooth-classic';
 
 const YourComponent = () => {
   const { isScanning, devices, scanDevices, connectToDevice } = useBluetooth();
@@ -110,7 +110,7 @@ Make sure to replace `"com.myCompany.p1"` and `"com.myCompany.p2"` with your own
 
 ## Example
 
-For a complete example of how to use `react-native-bluetooth-classic`, check out the [example](example) directory in this repository.
+For a complete example of how to use `rn-bluetooth-classic`, check out the [example](example) directory in this repository.
 
 ## Contributing
 
