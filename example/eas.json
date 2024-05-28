@@ -1,0 +1,21 @@
+{
+  "cli": {
+    "version": ">= 9.0.10"
+  },
+  "build": {
+    "development": {
+      "android": {
+        "developmentClient": true,
+        "distribution": "internal"
+      }
+    },
+    "production": {
+      "android": {
+        "distribution": "internal"
+      }
+  },
+  "submit": {
+    "production": {}
+  }
+  }
+}
