@@ -29,7 +29,7 @@ npm install react-native-bluetooth-classic
 or 
 
 ```bash
-npm install react-native-bluetooth-classic
+yarn add react-native-bluetooth-classic
 ```
 
 ## Usage
