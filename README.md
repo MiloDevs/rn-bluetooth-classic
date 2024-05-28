@@ -10,13 +10,26 @@
 You can install `react-native-bluetooth-classic` via npm or yarn:
 
 ```bash
-npm install react-native-bluetooth-classic
+npm install rn-bluetooth-classic
 ```
 
 or
 
 ```bash
-yarn add react-native-bluetooth-classic
+yarn add rn-bluetooth-classic
+```
+
+## Dependencies
+
+`rn-bluetooth-classic` uses `react-native-bluetooth-classic` under the hood to scan and connect to devices and only acts as a wrapper on top to make it easier to use.
+
+```bash
+npm install react-native-bluetooth-classic
+```
+or 
+
+```bash
+npm install react-native-bluetooth-classic
 ```
 
 ## Usage
