@@ -31,7 +31,8 @@
   "homepage": "https://github.com/MiloDevs/rn-bluetooth-classic#readme",
   "files": [
     "lib/**/*",
-    "src/**/*"
+    "src/**/*",
+    "types/**/*"
   ],
   "types": "lib/index.d.ts",
   "devDependencies": {
