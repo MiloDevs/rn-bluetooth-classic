@@ -1,13 +1,13 @@
 
 ---
 
-# react-native-bluetooth-classic
+# rn-native-bluetooth-classic
 
-`react-native-bluetooth-classic` is a React Native package that provides a Bluetooth context and hooks for managing Bluetooth functionality in your app. It handles permissions, device scanning, connection management, and data reception.
+`rn-bluetooth-classic` is a React Native package that provides a Bluetooth context and hooks for managing Bluetooth functionality in your app. It handles permissions, device scanning, connection management, and data reception.
 
 ## Installation
 
-You can install `react-native-bluetooth-classic` via npm or yarn:
+You can install `rn-bluetooth-classic` via npm or yarn:
 
 ```bash
 npm install rn-bluetooth-classic
