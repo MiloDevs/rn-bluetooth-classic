@@ -10,10 +10,23 @@
 You can install `react-native-bluetooth-classic` via npm or yarn:
 
 ```bash
-npm install react-native-bluetooth-classic
+npm install rn-bluetooth-classic
 ```
 
 or
+
+```bash
+yarn add rn-bluetooth-classic
+```
+
+## Dependencies
+
+`rn-bluetooth-classic` uses `react-native-bluetooth-classic` under the hood to scan and connect to devices and only acts as a wrapper on top to make it easier to use.
+
+```bash
+npm install react-native-bluetooth-classic
+```
+or 
 
 ```bash
 yarn add react-native-bluetooth-classic
@@ -24,7 +37,7 @@ yarn add react-native-bluetooth-classic
 ### 1. Import the `BluetoothProvider` and wrap your app with it in your root component:
 
 ```javascript
-import { BluetoothProvider } from 'react-native-bluetooth-provider';
+import { BluetoothProvider } from 'rn-bluetooth-classic';
 
 const App = () => {
   return (
@@ -38,7 +51,7 @@ const App = () => {
 ### 2. Use the `useBluetooth` hook in your components to access Bluetooth functionality:
 
 ```javascript
-import { useBluetooth } from 'react-native-bluetooth-classic';
+import { useBluetooth } from 'rn-bluetooth-classic';
 
 const YourComponent = () => {
   const { isScanning, devices, scanDevices, connectToDevice } = useBluetooth();
@@ -49,7 +62,7 @@ const YourComponent = () => {
 
 ## Use with Expo
 
-If you are using Expo and want to integrate `react-native-bluetooth-classic`, you can use the `with-rn-bluetooth-classic` Expo plugin maintained by amitferman. This plugin helps with auto-configuration of permissions and protocols.
+If you are using Expo and want to integrate `rn-bluetooth-classic`, you can use the `with-rn-bluetooth-classic` Expo plugin maintained by amitferman. This plugin helps with auto-configuration of permissions and protocols.
 
 ### Expo Plugin
 
@@ -97,7 +110,7 @@ Make sure to replace `"com.myCompany.p1"` and `"com.myCompany.p2"` with your own
 
 ## Example
 
-For a complete example of how to use `react-native-bluetooth-classic`, check out the [example](example) directory in this repository.
+For a complete example of how to use `rn-bluetooth-classic`, check out the [example](example) directory in this repository.
 
 ## Contributing
 
