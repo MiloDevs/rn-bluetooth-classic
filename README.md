@@ -62,7 +62,7 @@ const YourComponent = () => {
 
 ## Use with Expo
 
-If you are using Expo and want to integrate `react-native-bluetooth-classic`, you can use the `with-rn-bluetooth-classic` Expo plugin maintained by amitferman. This plugin helps with auto-configuration of permissions and protocols.
+If you are using Expo and want to integrate `rn-bluetooth-classic`, you can use the `with-rn-bluetooth-classic` Expo plugin maintained by amitferman. This plugin helps with auto-configuration of permissions and protocols.
 
 ### Expo Plugin
 
