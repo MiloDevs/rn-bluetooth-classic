@@ -1,6 +1,6 @@
 {
   "name": "rn-bluetooth-classic",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "RNBluetoothClassic wrapper",
   "main": "./src/useBluetooth.js",
   "scripts": {
