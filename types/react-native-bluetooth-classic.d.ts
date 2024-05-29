@@ -1,4 +1,4 @@
-declare module "react-native-bluetooth-classic" {
+declare module "rn-bluetooth-classic" {
   export interface useBluetooth {
     isScanning: boolean;
     isBluetoothEnabled: boolean;
