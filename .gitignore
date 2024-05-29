@@ -1,2 +1,5 @@
 package.json
 .npmignore
+node_modules
+src
+example
