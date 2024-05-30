@@ -1,6 +1,6 @@
 {
   "name": "rn-bluetooth-classic",
-  "version": "1.3.9",
+  "version": "1.3.10",
   "description": "A React Native Bluetooth provider using react-native-bluetooth-classic",
   "main": "dist/index.js",
   "scripts": {
