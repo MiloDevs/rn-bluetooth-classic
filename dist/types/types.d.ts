@@ -1,5 +1,7 @@
 import { BluetoothDevice } from "react-native-bluetooth-classic";
+import { StateChangeEvent } from "react-native-bluetooth-classic/lib/BluetoothEvent";
 export interface BluetoothContextType {
+    status: "IDLE" | StateChangeEvent;
     isBluetoothEnabled: boolean;
     devices: BluetoothDevice[];
     connectedDevice: BluetoothDevice | null;

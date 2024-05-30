@@ -66,24 +66,41 @@ exports.useBluetooth = exports.BluetoothProvider = void 0;
 var react_1 = __importStar(require("react"));
 var react_native_1 = require("react-native");
 var react_native_bluetooth_classic_1 = __importDefault(require("react-native-bluetooth-classic"));
-// Define the context
 // Define the context with the type
-var BluetoothContext = (0, react_1.createContext)(null);
+var BluetoothContext = (0, react_1.createContext)({
+    status: "IDLE",
+    isBluetoothEnabled: false,
+    devices: [],
+    connectedDevice: null,
+    receivedData: "",
+    error: null,
+    isScanning: false,
+    scanForDevices: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+        return [2 /*return*/];
+    }); }); },
+    connectToDevice: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+        return [2 /*return*/];
+    }); }); },
+    disconnectDevice: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+        return [2 /*return*/];
+    }); }); },
+    writeToDevice: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+        return [2 /*return*/];
+    }); }); },
+});
 // Define the provider
 var BluetoothProvider = function (_a) {
     var children = _a.children;
-    var context = (0, react_1.useContext)(BluetoothContext);
-    if (!context) {
-        throw new Error("useBluetooth must be used within a BluetoothProvider");
-    }
-    var _b = (0, react_1.useState)(false), isBluetoothEnabled = _b[0], setIsBluetoothEnabled = _b[1];
-    var _c = (0, react_1.useState)([]), devices = _c[0], setDevices = _c[1];
-    var _d = (0, react_1.useState)(null), connectedDevice = _d[0], setConnectedDevice = _d[1];
-    var _e = (0, react_1.useState)(""), receivedData = _e[0], setReceivedData = _e[1];
-    var _f = (0, react_1.useState)(null), error = _f[0], setError = _f[1];
-    var _g = (0, react_1.useState)(false), isScanning = _g[0], setIsScanning = _g[1];
-    var _h = (0, react_1.useState)(false), hasPermissions = _h[0], setHasPermissions = _h[1];
-    var _j = (0, react_1.useState)(null), subscription = _j[0], setSubscription = _j[1];
+    var _b = (0, react_1.useState)("IDLE"), status = _b[0], setStatus = _b[1];
+    var _c = (0, react_1.useState)(false), isBluetoothEnabled = _c[0], setIsBluetoothEnabled = _c[1];
+    var _d = (0, react_1.useState)([]), devices = _d[0], setDevices = _d[1];
+    var _e = (0, react_1.useState)(null), connectedDevice = _e[0], setConnectedDevice = _e[1];
+    var _f = (0, react_1.useState)(""), receivedData = _f[0], setReceivedData = _f[1];
+    var _g = (0, react_1.useState)(null), error = _g[0], setError = _g[1];
+    var _h = (0, react_1.useState)(false), isScanning = _h[0], setIsScanning = _h[1];
+    var _j = (0, react_1.useState)(false), hasPermissions = _j[0], setHasPermissions = _j[1];
+    var _k = (0, react_1.useState)(null), subscription = _k[0], setSubscription = _k[1];
+    var _l = (0, react_1.useState)(false), attemptingToConnect = _l[0], setAttemptingToConnect = _l[1];
     var requestBluetoothPermissions = function () { return __awaiter(void 0, void 0, void 0, function () {
         var reqPerms, grantedPermissions, deniedPermissions;
         return __generator(this, function (_a) {
@@ -100,7 +117,7 @@ var BluetoothProvider = function (_a) {
                     grantedPermissions = _a.sent();
                     deniedPermissions = reqPerms.filter(function (perm) { return grantedPermissions[perm] !== react_native_1.PermissionsAndroid.RESULTS.GRANTED; });
                     if (deniedPermissions.length > 0) {
-                        throw new Error("Bluetooth permissions not granted: " + deniedPermissions.join(", "));
+                        setError(new Error("Permissions denied"));
                     }
                     setHasPermissions(true);
                     return [2 /*return*/];
@@ -108,7 +125,7 @@ var BluetoothProvider = function (_a) {
         });
     }); };
     var scanForDevices = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var available, enabled, foundDevices;
+        var available, enabled, foundDevices, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -121,39 +138,52 @@ var BluetoothProvider = function (_a) {
                 case 3:
                     available = _a.sent();
                     if (!available) {
-                        throw new Error("Bluetooth is not available on this device");
+                        setError(new Error("Bluetooth is not available"));
                     }
                     return [4 /*yield*/, react_native_bluetooth_classic_1.default.isBluetoothEnabled()];
                 case 4:
                     enabled = _a.sent();
                     setIsBluetoothEnabled(enabled);
-                    if (!!enabled) return [3 /*break*/, 6];
-                    return [4 /*yield*/, react_native_bluetooth_classic_1.default.openBluetoothSettings()];
-                case 5:
-                    _a.sent();
-                    throw new Error("Bluetooth is not enabled");
-                case 6:
+                    if (!enabled) {
+                        react_native_bluetooth_classic_1.default.openBluetoothSettings();
+                        setError(new Error("Bluetooth is not enabled"));
+                    }
                     setIsScanning(true);
+                    _a.label = 5;
+                case 5:
+                    _a.trys.push([5, 7, , 8]);
                     return [4 /*yield*/, react_native_bluetooth_classic_1.default.startDiscovery()];
-                case 7:
+                case 6:
                     foundDevices = _a.sent();
                     setDevices(foundDevices);
+                    return [3 /*break*/, 8];
+                case 7:
+                    e_1 = _a.sent();
+                    setError(new Error(e_1));
                     setIsScanning(false);
-                    return [2 /*return*/];
+                    return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
             }
         });
     }); };
     var connectToDevice = function (address) { return __awaiter(void 0, void 0, void 0, function () {
-        var device, sub;
+        var device, sub, e_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    // Prevent multiple connection attempts
+                    if (attemptingToConnect) {
+                        return [2 /*return*/];
+                    }
+                    setAttemptingToConnect(true);
                     if (!connectedDevice) return [3 /*break*/, 2];
                     return [4 /*yield*/, disconnectDevice()];
                 case 1:
                     _a.sent();
                     _a.label = 2;
-                case 2: return [4 /*yield*/, react_native_bluetooth_classic_1.default.connectToDevice(address)];
+                case 2:
+                    _a.trys.push([2, 4, , 5]);
+                    return [4 /*yield*/, react_native_bluetooth_classic_1.default.connectToDevice(address)];
                 case 3:
                     device = _a.sent();
                     setConnectedDevice(device);
@@ -161,37 +191,58 @@ var BluetoothProvider = function (_a) {
                         setReceivedData(data.data);
                     });
                     setSubscription(sub);
-                    return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 4:
+                    e_2 = _a.sent();
+                    setError(new Error(e_2));
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     }); };
     var disconnectDevice = function () { return __awaiter(void 0, void 0, void 0, function () {
+        var e_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!connectedDevice) return [3 /*break*/, 2];
+                    if (!connectedDevice) return [3 /*break*/, 4];
                     if (subscription) {
                         subscription.remove();
                     }
-                    return [4 /*yield*/, connectedDevice.disconnect()];
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, connectedDevice.disconnect()];
+                case 2:
                     _a.sent();
                     setConnectedDevice(null);
-                    _a.label = 2;
-                case 2: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 3:
+                    e_3 = _a.sent();
+                    setError(new Error(e_3));
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     }); };
     var writeToDevice = function (message) { return __awaiter(void 0, void 0, void 0, function () {
+        var e_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!connectedDevice) return [3 /*break*/, 2];
-                    return [4 /*yield*/, connectedDevice.write(message)];
+                    if (!connectedDevice) return [3 /*break*/, 4];
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, connectedDevice.write(message)];
+                case 2:
                     _a.sent();
-                    _a.label = 2;
-                case 2: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 3:
+                    e_4 = _a.sent();
+                    setError(new Error(e_4));
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     }); };
@@ -213,13 +264,22 @@ var BluetoothProvider = function (_a) {
             });
         }); };
         initializeBluetooth().catch(setError);
+        // set up state change listener
+        var sub = react_native_bluetooth_classic_1.default.onStateChanged(function (state) {
+            setStatus(state);
+        });
         return function () {
             if (subscription) {
                 subscription.remove();
             }
+            if (connectedDevice) {
+                connectedDevice.disconnect();
+            }
+            sub.remove();
         };
     }, []);
     return (react_1.default.createElement(BluetoothContext.Provider, { value: {
+            status: status,
             isBluetoothEnabled: isBluetoothEnabled,
             devices: devices,
             connectedDevice: connectedDevice,
@@ -233,7 +293,7 @@ var BluetoothProvider = function (_a) {
         } }, children));
 };
 exports.BluetoothProvider = BluetoothProvider;
-// Custom hook to use the Bluetooth context
+// Define the useBluetooth hook
 var useBluetooth = function () {
     return (0, react_1.useContext)(BluetoothContext);
 };

@@ -14,6 +14,12 @@
     "declaration": true,
     "declarationDir": "./dist/types"
   },
-  "include": ["src"],
+  "include": [ 
+    "src/**/*.ts", // Include TypeScript files
+    "src/**/*.tsx", // Include TypeScript files with JSX
+    "src/**/*.js", // Include JavaScript files
+    "src/**/*.jsx", // Include JavaScript files with JSX
+    "typings/**/*.d.ts" // Include external type definitions if needed
+  ],
   "exclude": ["node_modules", "dist"]
 }
