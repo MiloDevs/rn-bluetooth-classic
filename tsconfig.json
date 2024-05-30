@@ -6,7 +6,6 @@
     "allowJs": true,
     "jsx": "react",
     "outDir": "./dist",
-    "types": ["./dist/type/**/*.d.ts"],
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
