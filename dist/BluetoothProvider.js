@@ -72,6 +72,10 @@ var BluetoothContext = (0, react_1.createContext)(null);
 // Define the provider
 var BluetoothProvider = function (_a) {
     var children = _a.children;
+    var context = (0, react_1.useContext)(BluetoothContext);
+    if (!context) {
+        throw new Error("useBluetooth must be used within a BluetoothProvider");
+    }
     var _b = (0, react_1.useState)(false), isBluetoothEnabled = _b[0], setIsBluetoothEnabled = _b[1];
     var _c = (0, react_1.useState)([]), devices = _c[0], setDevices = _c[1];
     var _d = (0, react_1.useState)(null), connectedDevice = _d[0], setConnectedDevice = _d[1];
