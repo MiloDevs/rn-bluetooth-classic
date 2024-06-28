@@ -78,13 +78,13 @@ var BluetoothContext = (0, react_1.createContext)({
     scanForDevices: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
         return [2 /*return*/];
     }); }); },
-    connectToDevice: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+    connectToDevice: function (deviceAddress) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
         return [2 /*return*/];
     }); }); },
     disconnectDevice: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
         return [2 /*return*/];
     }); }); },
-    writeToDevice: function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+    writeToDevice: function (data, encoding) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
         return [2 /*return*/];
     }); }); },
 });
@@ -225,27 +225,30 @@ var BluetoothProvider = function (_a) {
             }
         });
     }); };
-    var writeToDevice = function (message) { return __awaiter(void 0, void 0, void 0, function () {
-        var e_4;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    if (!connectedDevice) return [3 /*break*/, 4];
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, connectedDevice.write(message)];
-                case 2:
-                    _a.sent();
-                    return [3 /*break*/, 4];
-                case 3:
-                    e_4 = _a.sent();
-                    setError(new Error(e_4));
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
+    var writeToDevice = function (data, encoding) {
+        if (encoding === void 0) { encoding = "utf8"; }
+        return __awaiter(void 0, void 0, void 0, function () {
+            var e_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!connectedDevice) return [3 /*break*/, 4];
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, connectedDevice.write(data)];
+                    case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_4 = _a.sent();
+                        setError(new Error(e_4));
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
         });
-    }); };
+    };
     (0, react_1.useEffect)(function () {
         var initializeBluetooth = function () { return __awaiter(void 0, void 0, void 0, function () {
             return __generator(this, function (_a) {

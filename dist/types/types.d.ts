@@ -13,3 +13,4 @@ export interface BluetoothContextType {
     disconnectDevice: () => Promise<void>;
     writeToDevice: (message: string) => Promise<void>;
 }
+export type Encodings = "ascii" | "utf8" | "utf16le" | "ucs2" | "base64" | "latin1" | "binary" | "hex";
