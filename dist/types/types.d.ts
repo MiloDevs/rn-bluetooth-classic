@@ -11,6 +11,6 @@ export interface BluetoothContextType {
     scanForDevices: () => Promise<void>;
     connectToDevice: (address: string) => Promise<void>;
     disconnectDevice: () => Promise<void>;
-    writeToDevice: (message: string) => Promise<void>;
+    writeToDevice: (address: string, data: any, encoding?: Encodings) => Promise<void>;
 }
 export type Encodings = "ascii" | "utf8" | "utf16le" | "ucs2" | "base64" | "latin1" | "binary" | "hex";
