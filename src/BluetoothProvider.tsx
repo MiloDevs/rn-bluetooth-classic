@@ -121,8 +121,21 @@ export const BluetoothProvider = ({
    * @param {string} address - The address of the device to connect to
    */
   const connectToDevice = async (address: string): Promise<any> => {
+    setAttemptingToConnect(true);
     try {
-      const device = await RNBluetoothClassic.connectToDevice(address);
+      let device;
+      // Try binary connection first
+      try {
+        device = await RNBluetoothClassic.connectToDevice(address, {
+          charset: 'binary',
+          connectionType: 'binary'
+        });
+      } catch (binaryError) {
+        // If binary fails, try ASCII
+        device = await RNBluetoothClassic.connectToDevice(address, {
+        });
+      }
+
       setConnectedDevice(device);
 
       const sub = device.onDataReceived((data: any) => {
